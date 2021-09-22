@@ -71,9 +71,7 @@ class BinaryTree:
         if self.data:
             if self.data>max:
                 max=self.data
-        if self.left:
-            if self.left.max_element()>max:
-                max=self.left.max_element()
+        
         if self.right:
             if self.right.max_element()>max:
                 max=self.right.max_element()
@@ -89,12 +87,24 @@ class BinaryTree:
         if self.left:
             if self.left.min_element()<min:
                 min=self.left.min_element()
-        if self.right:
-            if self.right.min_element()<min:
-                min=self.right.min_element()
 
         return min
+    def delete_node(self,val):
+        if val<self.data:
+            if self.left:
+                self.left.delete_node(val)
+        elif val>self.data:
+            if self.right:
+                self.right.delete_node()
 
+        else:
+            if self.left and self.right is None:
+                return self.data
+            elif self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+        
 
 
 def build(elements):
